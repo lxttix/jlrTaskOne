@@ -1,3 +1,4 @@
 python working with SQL for database - sqlite3
-flask / django app
+flask / django app for creating website with python, HTML, CSS
+Flexbox - CSS library easier and faster UI
 
