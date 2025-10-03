@@ -1,0 +1,3 @@
+python working with SQL for database - sqlite3
+flask / django app
+
