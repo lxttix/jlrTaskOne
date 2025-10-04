@@ -1,0 +1,16 @@
+# THIS IS THE PYTHON FILE
+
+from flask import Flask, render_template
+# We will use the flask app to create a framework for the webpage (so we can use Python, HTML, CSS together)
+
+app = Flask(__name__) #creates an application in flask
+
+@app.route("/") # this is the default route for the webpage
+def homepage():
+    return render_template("index.html") # this returns the HTML file so it is presented to the user
+
+if __name__ == "__main__":
+    app.run()
+
+# WHEN RUNNING - run as normal then click on the link 
+# which says "running on http://127........." which should open the webpage
