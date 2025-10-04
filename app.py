@@ -1,6 +1,7 @@
 # THIS IS THE PYTHON FILE
 
 from flask import Flask, render_template
+# Check interpreter is set to 3.11.9 on VSCode - otherwise it wont import flask properly
 # We will use the flask app to create a framework for the webpage (so we can use Python, HTML, CSS together)
 
 app = Flask(__name__) #creates an application in flask
