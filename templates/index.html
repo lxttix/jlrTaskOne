@@ -3,12 +3,27 @@
 <html lang="en">
     <head>
         <title>JLR Task One</title> <!-- Names the tab -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <h1>JLR Task One - Vehicle Search</h1> <!-- This is a heading for the page -->
-        <form>
-            <!-- This form will take input from the user so we can use that to search through the data
-             (still need to code this) -->
-        </form>
+        <div class="p-3">
+            <h1>JLR Task One - Vehicle Search</h1> <!-- This is a heading for the page -->
+            <br>
+            <br>
+            <h2>Search for a car by its model, make, production date, colour or location</h2>
+            <form action="search" method="post"> 
+                <!-- This form will take input from the user so we can use that to search through the data
+                    (not completed) -->
+                <select name="data-type"> <!-- This is a drop down menu for users to select what they want to search by-->
+                    <option value="model">Model</option>
+                    <option value="make">Make</option>
+                    <option value="productionDate">Production date</option>
+                    <option value="colour">Colour</option>
+                    <option value="location">Location</option>
+                </select>
+                <input name="data-value">
+                <input type="submit">
+            </form>
+        </div>
     </body>
 </html>
