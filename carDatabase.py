@@ -16,6 +16,7 @@ con.commit()
 con.close()
 """
 
+'''
 with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
     reader = csv.reader(file)
 
@@ -23,6 +24,6 @@ with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
         
         if (row[0] == )
 
-
+'''
 
     

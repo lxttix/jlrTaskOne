@@ -13,15 +13,74 @@
             <h2>Search for a car by its model, make, production date, colour or location</h2>
             <form action="search" method="post"> 
                 <!-- This form will take input from the user so we can use that to search through the data
-                    (not completed) -->
-                <select name="data-type"> <!-- This is a drop down menu for users to select what they want to search by-->
-                    <option value="model">Model</option>
-                    <option value="make">Make</option>
-                    <option value="productionDate">Production date</option>
-                    <option value="colour">Colour</option>
-                    <option value="location">Location</option>
+                    (not completed) 
+                    
+                    Make, model, production date, colour, location
+                    -->
+
+                <label>Make</label>
+
+                <select name="make-type"> 
+                    <option value="Jaguar">Jaguar</option>
+                    <option value="Land Rover">Land Rover</option>
                 </select>
-                <input name="data-value">
+
+                <br>
+
+                <label>Model</label>
+
+
+                <select name="model-type"> 
+                    <option value="I Pace">I Pace</option>
+                    <option value="E Pace">E Pace</option>
+                    <option value="F Pace">F Pace</option>
+                    <option value="Range Rover">Range Rover</option>
+                    <option value="Range Rover Sport">Range Rover Sport</option>
+                    <option value="Discovery">Discovery</option>
+                    <option value="Discovery Sport">Discovery Sport</option>
+                    <option value="Velar">Velar</option>
+                    <option value="Defender">Defender</option>
+                    <option value="Evoque">Evoque</option>
+                </select>
+
+                <br>
+
+                <label>Production Date</label>
+
+                <select name="production-type"> 
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+
+                <br>
+
+                <label>Colour</label>
+                
+
+                <select name="colour-type"> 
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="silver">Silver</option>
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                    <option value="green">Green</option>
+                    <option value="grey">Grey</option>
+                </select>
+
+                <br>
+
+                <label>Location</label>
+                                
+                <select name="location-type"> 
+                    <option value="halewood">Halewood</option>
+                    <option value="solihull">Solihull</option>
+                    <option value="castle_brom">Castle Bromwich</option>
+                </select>
+
+
+                <br>
+                <br>
+
                 <input type="submit">
             </form>
         </div>
