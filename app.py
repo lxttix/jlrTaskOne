@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 import csv, sqlite3
 # Check interpreter is set to 3.11.9 on VSCode - otherwise it wont import flask properly
@@ -11,7 +10,7 @@ app = Flask(__name__) #creates an application in flask
 
 
 def homepage():
-    return render_template("index.html") # this returns the HTML file so it is presented to the user
+    return render_template("index.html", show_element="none", show_results=" ") # this returns the HTML file so it is presented to the user
 
 
 
@@ -30,30 +29,26 @@ def searchCars():
         colour = request.form.get("colour-type")
         location = request.form.get("location-type")
 
-        print(model)
-
-        print("222222222222222222222")
-
-
-
         with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
 
+
             
             for row in reader:
-                if row[0] == make:
+                item = row[2]
+                item = item[6:10]
+                print(item)
+                if row[0] == make and row[1] == model and item == date and row[3] == colour and row[4] == location:
                     selectedcars.append(row)
-    
-            for car in selectedcars:
-                print(car[1])
-                if car[1] != model:
-                    selectedcars.remove(car)
-                elif car[3] != colour:
-                    selectedcars.remove(car)
-                elif car[4] != location:
-                    selectedcars.remove(car)
 
-        return selectedcars
+
+                
+        if len(selectedcars) != 0:
+
+            return render_template("index.html", show_element="none", show_results=f"{selectedcars}")
+        else:
+
+            return render_template("index.html", show_element="block", show_results=" ")
 
 
 if __name__ == "__main__":
