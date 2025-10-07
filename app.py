@@ -21,6 +21,8 @@ def searchCars():
 
     selectedcars = []
 
+    reqs = []
+
     if request.method == "POST":
 
         make = request.form.get("make-type")
@@ -29,20 +31,24 @@ def searchCars():
         colour = request.form.get("colour-type")
         location = request.form.get("location-type")
 
+        reqs.append(make)
+        reqs.append(model)
+        reqs.append(date)
+        reqs.append(colour)
+        reqs.append(location)
+
         with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
 
-
-            
             for row in reader:
                 item = row[2]
                 item = item[6:10]
                 print(item)
-                if row[0] == make and row[1] == model and item == date and row[3] == colour and row[4] == location:
+                
+                if (row[0] == make or make == "N") and (row[1] == model or model == "N") and (item == date or date == "N") and (row[3] == colour or colour == "N") and (row[4] == location or location == "N"):
                     selectedcars.append(row)
 
-
-                
+  
         if len(selectedcars) != 0:
 
             return render_template("index.html", show_element="none", show_results=f"{selectedcars}")
