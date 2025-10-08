@@ -19,9 +19,15 @@ def homepage():
 
 def searchCars():
 
-    selectedcars = []
+    #selectedcars = []
 
-    reqs = []
+    models = []
+    makes = []
+    dates = []
+    colours = []
+    locations = []
+
+    indexes = []
 
     if request.method == "POST":
 
@@ -31,11 +37,6 @@ def searchCars():
         colour = request.form.get("colour-type")
         location = request.form.get("location-type")
 
-        reqs.append(make)
-        reqs.append(model)
-        reqs.append(date)
-        reqs.append(colour)
-        reqs.append(location)
 
         with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
@@ -43,17 +44,26 @@ def searchCars():
             for row in reader:
                 item = row[2]
                 item = item[6:10]
-                print(item)
+    
                 
                 if (row[0] == make or make == "N") and (row[1] == model or model == "N") and (item == date or date == "N") and (row[3] == colour or colour == "N") and (row[4] == location or location == "N"):
-                    selectedcars.append(row)
+                    models.append(row[0])
+                    makes.append(row[1])
+                    dates.append(item)
+                    colours.append(row[3])
+                    locations.append(row[4])
+
+        print(models, makes, dates, colours, locations)
+
+        for i in range (0 , len(models)):
+            indexes.append(i)
+
+        print(indexes)
 
   
-        if len(selectedcars) != 0:
-
-            return render_template("index.html", show_element="none", show_results=f"{selectedcars}")
+        if len(models) != 0:
+            return render_template("index.html", show_element="none", models=models, makes=makes, dates=dates, colours=colours, locations =locations)
         else:
-
             return render_template("index.html", show_element="block", show_results=" ")
 
 
