@@ -97,17 +97,29 @@
                 <strong> No cars found.</strong> 
             </div>
 
-            <div id="results">
-                {% for make in makes %}
-                <div class="card" style="width: 50rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ models[loop.index0] }}, {{ makes[loop.index0] }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ locations[loop.index0]}}</h6>
-                        <p class="card-text">{{ colours[loop.index0]}}</p> 
-                        <p class="card-text">{{ dates[loop.index0]}}</p>
+            <div id="results" class = "container mt-4">
+                <div class ="row g-4">
+                    {% for make in makes %}
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2" style="margin: 0 1rem 2rem 0;">
+                        <!--This uses strict boundaries for each box where it displays
+                        meaning if only one box is displayed, it wont stretch to fit the screen -
+                        essentially every box is a fixed size
+                        
+                        col stuff defines how the space is divided based on the screen size
+
+                        margin defines the spacing around each boxe in the form "margin: top, right, left, bottom"
+                        -->
+                        <div class ="card h-100">
+                            <div class = "card-body">
+                                <h5 class="card-title">{{ models[loop.index0] }}, {{ makes[loop.index0] }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ locations[loop.index0]}}</h6>
+                                <p class="card-text">{{ colours[loop.index0]}}</p> 
+                                <p class="card-text">{{ dates[loop.index0]}}</p>
+                            </div>
+                        </div> 
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
     </body>

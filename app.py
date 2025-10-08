@@ -19,15 +19,12 @@ def homepage():
 
 def searchCars():
 
-    #selectedcars = []
-
     models = []
     makes = []
     dates = []
     colours = []
     locations = []
 
-    indexes = []
 
     if request.method == "POST":
 
@@ -53,16 +50,9 @@ def searchCars():
                     colours.append(row[3])
                     locations.append(row[4])
 
-        print(models, makes, dates, colours, locations)
-
-        for i in range (0 , len(models)):
-            indexes.append(i)
-
-        print(indexes)
-
   
         if len(models) != 0:
-            return render_template("index.html", show_element="none", models=models, makes=makes, dates=dates, colours=colours, locations =locations)
+            return render_template("index.html", show_element="none", models=models, makes=makes, dates=dates, colours=colours, locations=locations)
         else:
             return render_template("index.html", show_element="block", show_results=" ")
 
