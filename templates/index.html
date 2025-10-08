@@ -101,7 +101,7 @@
                 {% for make in makes %}
                 <div class="card" style="width: 50rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{ makes[loop.index0] }} {{ models[loop.index0] }}</h5>
+                        <h5 class="card-title">{{ models[loop.index0] }}, {{ makes[loop.index0] }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ locations[loop.index0]}}</h6>
                         <p class="card-text">{{ colours[loop.index0]}}</p> 
                         <p class="card-text">{{ dates[loop.index0]}}</p>
