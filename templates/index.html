@@ -8,7 +8,7 @@
         
             function activate(element) {
                 //const title = element.dataset.title;
-                const location = element.dataset.location;
+                const location = element.dataset.location.replace(/\s/g, "");
                 const colour = element.dataset.colour;
                 const date = element.dataset.date;
 
