@@ -6,9 +6,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script>
         
-            function activate() {
-                var title = document.getElementById("title").innerText;
-                console.log(title);
+            function activate(element) {
+                //const title = element.dataset.title;
+                const location = element.dataset.location;
+                const colour = element.dataset.colour;
+                const date = element.dataset.date;
+
+                var search = location + "-" + colour + "-" + date 
+
+                console.log(search)
+
+                //url.searchParams.append(title, location, colour, date);
             }
             
         </script>
@@ -105,13 +113,19 @@
                 <strong> No cars found.</strong> 
             </div>
 
-            <div id="results" class = "container mt-4">
+            <div id="results" class = "container mt-3">
                 <div class ="row g-4">
                     {% for make in makes %}
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2" style="margin: 0 1rem 2rem 0;">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2" style="margin: 0 1rem 2rem 0">
                             <div class ="card h-100">
-                                <div class = "card-body" onclick="activate()">
-                                    <h5 id="title" class="card-title" value="hello">{{ models[loop.index0] }}, {{ makes[loop.index0] }}</h5>
+                                <div class = "card-body" 
+                                    onclick="activate(this)"
+                                    data-title="{{ models[loop.index0] }}, {{ makes[loop.index0] }}"
+                                    data-location="{{ locations[loop.index0] }}"
+                                    data-colour="{{ colours[loop.index0] }}"
+                                    data-date="{{ dates[loop.index0] }}">
+                                    <h4 id="model" class="card-title">{{ models[loop.index0] }}</h4>
+                                    <h5 id="make" class="card-title"> {{ makes[loop.index0] }}</h5>
                                     <h6 id="location" class="card-subtitle mb-2 text-muted">{{ locations[loop.index0]}}</h6>
                                     <p id="colour" class="card-text">{{ colours[loop.index0]}}</p> 
                                     <p id="date" class="card-text">{{ dates[loop.index0]}}</p>

@@ -4,7 +4,7 @@ import csv, sqlite3
 import io
 import requests
 from lxml import etree
-import weasyprint
+from html2image import Html2Image
 # Check interpreter is set to 3.11.9 on VSCode - otherwise it wont import flask properly
 # We will use the flask app to create a framework for the webpage (so we can use Python, HTML, CSS together)
 
@@ -62,23 +62,22 @@ def searchCars():
         
 def preview():
     
-    page_html = requests.get(request.ags['url']).text
-    #fetches url
-    
+    page_html = requests.get(request.args['url']).text
+
     parser = etree.HTMLParser()
-    tree = etree.parse(io.SringIO(page_html), parser)
-    #parses the html response
-    
+    tree = etree.parse(io.StringIO(page_html), parser)
+
     head = tree.xpath('/html/head')[0]
     title = head.xpath('meta[@property="og:title"]/@content')[0]
     description = head.xpath('meta[@property="og:description"]/@content')[0]
-    #uses the websites metadata to get the website title and description
-    
+
     preview_html = render_template('card.html', title=title, excerpt=description)
-    #renders the HTML version of the preview
-    
-    preview_img = weasyprint.HTML(string=preview_html).write_png(resolution=2 * 96)
-    #converts HTML preview to PNG
+
+    hti = Html2Image()
+    hti.screenshot(html_str=preview_html, save_as='preview.png')
+
+    with open('preview.png', 'rb') as f:
+        preview_img = f.read()
 
     return Response(preview_img, mimetype='image/png')
 
