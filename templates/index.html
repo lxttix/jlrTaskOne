@@ -7,16 +7,15 @@
         <script>
         
             function activate(element) {
-                //const title = element.dataset.title;
-                const location = element.dataset.location.replace(/\s/g, "");
+                const make = element.dataset.make.replace(/\s/g, "&")
+                const model = element.dataset.model.replace(/\s/g, "&")
+                const location = element.dataset.location.replace(/\s/g, "&");
                 const colour = element.dataset.colour;
                 const date = element.dataset.date;
 
-                var search = location + "-" + colour + "-" + date 
+                const search = make + "-" + model + "-" + location + "-" + colour + "-" + date 
 
-                console.log(search)
-
-                //url.searchParams.append(title, location, colour, date);
+                window.open("http://127.0.0.1:5000/details/" + search);
             }
             
         </script>
@@ -120,12 +119,13 @@
                             <div class ="card h-100">
                                 <div class = "card-body" 
                                     onclick="activate(this)"
-                                    data-title="{{ models[loop.index0] }}, {{ makes[loop.index0] }}"
+                                    data-model="{{ models[loop.index0] }}"
+                                    data-make = "{{ makes[loop.index0] }}"
                                     data-location="{{ locations[loop.index0] }}"
                                     data-colour="{{ colours[loop.index0] }}"
                                     data-date="{{ dates[loop.index0] }}">
-                                    <h4 id="model" class="card-title">{{ models[loop.index0] }}</h4>
-                                    <h5 id="make" class="card-title"> {{ makes[loop.index0] }}</h5>
+                                    <h4 id="make" class="card-title"> {{ makes[loop.index0] }}</h4>
+                                    <h5 id="model" class="card-title">{{ models[loop.index0] }}</h5>
                                     <h6 id="location" class="card-subtitle mb-2 text-muted">{{ locations[loop.index0]}}</h6>
                                     <p id="colour" class="card-text">{{ colours[loop.index0]}}</p> 
                                     <p id="date" class="card-text">{{ dates[loop.index0]}}</p>
