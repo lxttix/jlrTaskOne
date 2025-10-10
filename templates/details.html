@@ -3,14 +3,17 @@
 <html>
     <head>
         <title>Car Details</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Selected Car:</h1>
-        <p>
-            <h2>{{results[0]}}, {{results[1]}}</h2>
-            <h4>{{results[2]}}</h4>
-            <h5>{{results[3]}}</h5>
-            <h6>{{results[4]}}</h6>
-        </p>
+        <div class="p-3">
+            <h1>Selected Car:</h1>
+            <p>
+                <h2>{{results[0]}}, {{results[1]}}</h2>
+                <h4 class="text-muted">{{results[2]}} | {{results[3]}} | {{results[4]}}</h4>
+                <img src = "{{img_link}} alt = "cat"></img>
+            </p>
+        </div>
     </body>
+        
 </html>

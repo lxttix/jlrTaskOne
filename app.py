@@ -1,35 +1,23 @@
 from flask import Flask, render_template, request
 from flask import Response
-import csv, sqlite3
-import io
-import requests
-from lxml import etree
+import csv
+import html2image
 from html2image import Html2Image
 # Check interpreter is set to 3.11.9 on VSCode - otherwise it wont import flask properly
 # We will use the flask app to create a framework for the webpage (so we can use Python, HTML, CSS together)
 
 app = Flask(__name__) #creates an application in flask
 
-def preview():
+
+def preview(detail):
     
-    page_html = requests.get(request.args['url']).text
-
-    parser = etree.HTMLParser()
-    tree = etree.parse(io.StringIO(page_html), parser)
-
-    head = tree.xpath('/html/head')[0]
-    title = head.xpath('meta[@property="og:title"]/@content')[0]
-    description = head.xpath('meta[@property="og:description"]/@content')[0]
-
-    preview_html = render_template('card.html', title=title, excerpt=description)
-
     hti = Html2Image()
-    hti.screenshot(html_str=preview_html, save_as='preview.png')
-
-    with open('preview.png', 'rb') as f:
-        preview_img = f.read()
-
-    return Response(preview_img, mimetype='image/png')
+    
+    hti.screenshot(url = f"https://www.google.com/search?tbm=isch&q={detail}", save_as= f"{detail}.png")
+    
+    
+    return f"{detail}.png"
+       
 
 @app.route("/") # this is the default route for the webpage
 def homepage():
@@ -57,7 +45,7 @@ def searchCars():
         location = request.form.get("location-type")
 
 
-        with open ('static/cars.csv', mode='r', newline='', encoding='utf-8') as file:
+        with open ('C:\JLR Task One\jlrTaskOne\static\cars.csv', mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
 
             for row in reader:
@@ -79,18 +67,18 @@ def searchCars():
             return render_template("index.html", show_element="block", show_results=" ")
         
 @app.route("/details/<detail>", methods=["GET", "POST"])
+
 def showDetails(detail):
+    
     result = detail.split("-")
-    new = []
-    for res in result:
-        print(res)
-        res = res.replace("&", " ")
-        print(res)
         
+    new = []
+    
+    for res in result:
+        res = res.replace("+", " ")
         new.append(res)
         
-        
-    return render_template("details.html", results=new)
+    return render_template("details.html", results=new, img_link = preview(detail))
         
 
 
